@@ -6,16 +6,22 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SignupResponse {
+  private Long id;
   private String username;
   private String nickname;
   private List<RoleResponse> roles;
 
   public SignupResponse(User user) {
+    this.id = user.getId();
     this.username = user.getUsername();
     this.nickname = user.getNickname();
     this.roles = user.getRolesAsString().stream()
         .map(RoleResponse::new)
         .collect(Collectors.toList());
+  }
+
+  public Long getId() {
+    return id;
   }
 
   public String getUsername() {
